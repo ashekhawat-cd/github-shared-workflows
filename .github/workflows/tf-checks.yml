@@ -262,11 +262,9 @@ jobs:
         with:
           actions_subcommand: 'fmt'
 
-      - name: 🏗️ Terraform Init
-        working-directory: ${{ inputs.working_directory }}
-        run: terraform init -backend-config="token=${{ secrets.TF_API_TOKEN }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB }}
+      - name: Terraform Init
+        id: init
+        run: terraform init -input=false
 
       - name: 🔎 Terraform validate
         uses: dflook/terraform-validate@v2
