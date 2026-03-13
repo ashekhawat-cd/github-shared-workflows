@@ -259,8 +259,6 @@ jobs:
 
       - name: 🧹 Terraform Format
         uses: 'dflook/terraform-fmt-check@v2'
-        with:
-          actions_subcommand: 'fmt'
 
       - name: Terraform Init
         id: init
@@ -269,7 +267,7 @@ jobs:
       - name: 🔎 Terraform validate
         uses: dflook/terraform-validate@v2
         with:
-          tf_actions_working_dir: ${{ inputs.working_directory }}
+          path: ${{ inputs.working_directory }}
 
       - name: 📋 Terraform Plan
         if: ${{ inputs.enable_plan }}
